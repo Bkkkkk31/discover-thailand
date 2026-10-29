@@ -1,0 +1,5 @@
+/* Back to Home - small local nav, no change to existing province UI. */
+.explore-back-wrap { display:flex;align-items:center;gap:8px;min-height:28px;padding:0 5px;color:#8c9bac;font:500 12px/1.4 Kanit,Tahoma,sans-serif;}
+.explore-home-link { display:inline-flex;align-items:center;gap:7px;color:#d9eaff;background:#1f252e;padding:7px 12px;border:1px solid rgba(0,170,255,.25);border-radius:8px;box-shadow:2px 2px 0 rgba(0,0,0,.35);font-weight:600;}
+.explore-home-link:hover { color:#00aaff;border-color:rgba(0,170,255,.55); }
+.explore-home-link:focus-visible {outline:2px solid #00aaff;outline-offset:2px;}

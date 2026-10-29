@@ -68,8 +68,10 @@
     const initialProvince = url.searchParams.get('province');
     const initialTab = url.searchParams.get('tab');
     const initialPlace = url.searchParams.get('place');
+    const initialQuery = url.searchParams.get('q');
     if (initialProvince && provinces.some(p => p.id===initialProvince)) selectProvince(initialProvince,false);
     if (initialTab) selectTab(initialTab);
+    if (initialQuery && !initialPlace) { state.tab = ['foods', 'attractions'].includes(initialTab) ? initialTab : 'attractions'; state.query = initialQuery.slice(0,120); $('searchInput').value = state.query; renderTabs(); renderContent(); }
     if (initialPlace && findItem(initialPlace) && !findItem(initialPlace).isFood) openDetail(initialPlace);
     window.addEventListener('resize', setScale, { passive:true });
   }
@@ -350,8 +352,8 @@
   function clearFavorites() { state.favorites=[]; store.remove('th_travel_favs'); updateFavoriteCount(); renderContent(); renderFavorites(); }
 
   function bindEvents() {
-    $('brandHome').addEventListener('click',()=>selectProvince('chiangmai'));
-    $('brandHome').addEventListener('keydown',e=>{if(['Enter',' '].includes(e.key)){e.preventDefault();selectProvince('chiangmai');}});
+    $('brandHome').addEventListener('click',()=>{ window.location.href = 'index.html'; });
+    $('brandHome').addEventListener('keydown',e=>{if(['Enter',' '].includes(e.key)){e.preventDefault();window.location.href = 'index.html';}});
     $('themeToggle').addEventListener('click',()=>{state.theme=state.theme==='dark'?'light':'dark';store.set('th_minimal_theme',state.theme);applyTheme();});
     $('favoriteOpen').addEventListener('click',openFavorites);
     $('provinceSelect').addEventListener('change',e=>selectProvince(e.target.value));
